@@ -12,8 +12,8 @@ const authValidator = require("../validators/authValidator");
 const { validate } = require("../validators/index");
 const { Op } = require("sequelize");
 
-router.get("/products", (req, res) => {
-  Products.findAll()
+router.get("/products", async (req, res) => {
+  await Products.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -22,8 +22,8 @@ router.get("/products", (req, res) => {
     });
 });
 
-router.get("/getDisplayProducts", (req, res) => {
-  Products.findAll({
+router.get("/getDisplayProducts", async (req, res) => {
+  await Products.findAll({
     attributes: ["id", "product_name", "image", "price"], // Specify the attributes to include in the result
   })
     .then((data) => {
@@ -34,8 +34,8 @@ router.get("/getDisplayProducts", (req, res) => {
     });
 });
 
-router.get("/getSortedProducts", (req, res) => {
-  Products.findAll({
+router.get("/getSortedProducts", async (req, res) => {
+  await Products.findAll({
     attributes: ["id", "product_name", "image", "price"],
     order: [["price", req.query.sortKey == 1 ? "DESC" : "ASC"]],
   })
@@ -47,8 +47,8 @@ router.get("/getSortedProducts", (req, res) => {
     });
 });
 
-router.get("/getProduct", (req, res) => {
-  Products.findOne({
+router.get("/getProduct", async (req, res) => {
+  await Products.findOne({
     where: { id: req.query.product_id },
   })
     .then((data) => {
@@ -59,8 +59,8 @@ router.get("/getProduct", (req, res) => {
     });
 });
 
-router.get("/getSearchResults", (req, res) => {
-  Products.findAll({
+router.get("/getSearchResults", async (req, res) => {
+  await Products.findAll({
     attributes: ["id", "product_name", "image", "price"],
     where: {
       [Op.or]: [

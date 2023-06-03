@@ -22,7 +22,7 @@ router.post("/pushtocart", async (req, res) => {
     { where: { id: req.body.product_key } }
   );
   if (!cartData) {
-    Cart.create({
+    await Cart.create({
       user_id: req.query.id,
       req_quantity: req.body.req_quantity,
       product_id: req.body.product_key,
@@ -30,7 +30,7 @@ router.post("/pushtocart", async (req, res) => {
       .then((res) => res.send({ message: "Successfully added to cart!" }))
       .catch((err) => res.send({ error: err }));
   } else {
-    Cart.update(
+    await Cart.update(
       {
         req_quantity: cartData.dataValues.req_quantity + req.body.req_quantity,
       },
@@ -54,7 +54,7 @@ router.get("/getcart", async (req, res) => {
   });
   // console.log(quantData);
   const product_ids = await data.map((result) => result.product_id);
-  Products.findAll({
+  await Products.findAll({
     where: {
       id: {
         [Op.in]: product_ids != undefined ? product_ids : [],
@@ -85,7 +85,7 @@ router.delete("/deleteitem", async (req, res) => {
   await Cart.destroy({
     where: { user_id: req.query.id, product_id: req.query.product_key },
   });
-  Products.findAll({
+  await Products.findAll({
     where: {
       user_id: req.query.id,
     },
