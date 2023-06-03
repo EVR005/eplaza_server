@@ -44,12 +44,12 @@ router.post("/pushtocart", async (req, res) => {
 router.get("/getcart", async (req, res) => {
   const data = await Cart.findAll({
     attributes: ["product_id"],
-    group: ["product_id"],
+    //group: ["product_id"],
     where: { user_id: req.query.id },
   });
   const quantData = await Cart.findAll({
     attributes: ["req_quantity"],
-    group: ["product_id"],
+    //group: ["product_id"],
     where: { user_id: req.query.id },
   });
   // console.log(quantData);
