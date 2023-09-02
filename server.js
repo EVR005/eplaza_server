@@ -10,7 +10,7 @@ const shoppingRoutes = require("./routes/shoppingRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const utils = require("./utils");
 const { verifyToken } = require("./utils/token");
-const { BulkInsert } = require("./upload");
+//const { BulkInsert } = require("./upload");
 
 const app = express();
 
