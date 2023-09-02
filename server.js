@@ -10,6 +10,7 @@ const shoppingRoutes = require("./routes/shoppingRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const utils = require("./utils");
 const { verifyToken } = require("./utils/token");
+const { BulkInsert } = require("./upload");
 
 const app = express();
 
@@ -27,6 +28,8 @@ sequelize
     console.error("Error synchronizing Treasure Hunt DB", err);
     logger.info("Failed to sync db: " + err.message);
   });
+
+// BulkInsert();
 
 app.get("/", (req, res) => {
   res.send("hello");
@@ -55,9 +58,6 @@ app.use((req, res, next) => {
   }
 });
 
-// app.use("/", authenticatedAccess);
-// app.use("/", playerDetails);
-// app.use("/", adminRoutes);
 app.use("/", shoppingRoutes);
 app.use("/", cartRoutes);
 
