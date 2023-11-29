@@ -1,11 +1,16 @@
 var logger = require("./utils/log")(module);
 const express = require("express");
 const { sequelize } = require("./connection/db_connect");
+const Sequelize = require("sequelize");
 const cors = require("cors");
 
 // const userLogin = require("./models/userlogin");
 
+const { Otp } = require("./models/otp");
+
 const userLogins = require("./routes/loginRoutes");
+const otpRoutes = require("./routes/otpRoutes");
+const signupotpRoutes = require("./routes/signupotpRoutes");
 const shoppingRoutes = require("./routes/shoppingRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const utils = require("./utils");
@@ -34,8 +39,8 @@ sequelize
 app.get("/", (req, res) => {
   res.send("hello");
 });
-
 app.use("/api/", userLogins);
+app.use("/", signupotpRoutes);
 
 app.use((req, res, next) => {
   const token = req.headers.authorization;
@@ -58,6 +63,7 @@ app.use((req, res, next) => {
   }
 });
 
+app.use("/", otpRoutes);
 app.use("/", shoppingRoutes);
 app.use("/", cartRoutes);
 

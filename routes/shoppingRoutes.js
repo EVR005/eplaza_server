@@ -3,7 +3,6 @@
 const { Products } = require("../models/products");
 var logger = require("../utils/log")(module);
 const sequelize = require("sequelize");
-
 const express = require("express");
 const router = express.Router();
 // const Login = require("../controllers/auth/login");
