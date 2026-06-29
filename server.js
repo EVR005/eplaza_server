@@ -65,7 +65,7 @@ app.use((req, res, next) => {
   }
 });
 
-app.use("/public", publicRouter);
+app.use("/api/public", publicRouter);
 app.use("/", otpRoutes);
 app.use("/", shoppingRoutes);
 app.use("/", cartRoutes);
