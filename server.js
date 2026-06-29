@@ -17,7 +17,7 @@ const utils = require("./utils");
 const { verifyToken } = require("./utils/token");
 //const { BulkInsert } = require("./upload");
 
-import { publicRouter } from "./routes/publicRoutes";
+const { publicRouter } = require("./routes/publicRoutes");
 
 const app = express();
 
