@@ -38,6 +38,7 @@ sequelize
 
 // BulkInsert();
 
+app.use("/api/public", publicRouter);
 app.get("/", (req, res) => {
   res.send("hello");
 });
@@ -65,7 +66,6 @@ app.use((req, res, next) => {
   }
 });
 
-app.use("/api/public", publicRouter);
 app.use("/", otpRoutes);
 app.use("/", shoppingRoutes);
 app.use("/", cartRoutes);
