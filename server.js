@@ -17,6 +17,8 @@ const utils = require("./utils");
 const { verifyToken } = require("./utils/token");
 //const { BulkInsert } = require("./upload");
 
+import { publicRouter } from "./routes/publicRoutes";
+
 const app = express();
 
 app.use(cors()); //update it when u integrate with frontend
@@ -63,6 +65,7 @@ app.use((req, res, next) => {
   }
 });
 
+app.use("/public", publicRouter);
 app.use("/", otpRoutes);
 app.use("/", shoppingRoutes);
 app.use("/", cartRoutes);
